@@ -1,15 +1,5 @@
-FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
-
-WORKDIR /app
-
+FROM maven AS buildstage
+RUN mkdir /opt/mindcircuit13
+WORKDIR /opt/mindcircuit13
 COPY . .
-
-RUN mvn clean package -DskipTests
-
-FROM eclipse-temurin:17-alpine
-
-WORKDIR /app
-
-COPY --from=build /app/target/*.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+RUN mvn clean install
