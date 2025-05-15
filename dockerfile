@@ -1,9 +1,21 @@
-FROM node:22.13.1-alpine3.21
+FROM ubuntu
 
-WORKDIR /app
+MAINTAINER ybmsr <ybmadhu404@gmail.com>
 
-COPY . .
+WORKDIR /usr/apps/hello-docker/
 
-RUN npm install
+RUN apt-get -y update
 
-CMD ["npm", "start"]
+RUN apt-get install -y nodejs
+
+RUN apt-get install -y npm
+
+#RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+RUN npm install -g http-server
+
+ADD . /usr/apps/hello-docker/
+
+ADD index.html /usr/apps/hello-docker/index.html
+
+CMD ["http-server", "-s"]
