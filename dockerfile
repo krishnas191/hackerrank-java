@@ -1,9 +1,9 @@
-FROM maven:3.9.9-eclipse-temurin-17-alpine
+FROM node:22.13.1-alpine3.21
 
 WORKDIR /app
 
 COPY . .
 
-RUN mvn clean install
+RUN npm install
 
-ENTRYPOINT ["mvn", "spring-boot:run"]
+CMD ["npm", "start"]
