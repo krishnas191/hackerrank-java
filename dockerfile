@@ -1,4 +1,7 @@
-FROM anapsix/alpine-java 
-LABEL maintainer="shyamshiva19@gmail.com" 
-COPY /target/spring-petclinic-1.5.1.jar /home/spring-petclinic-1.5.1.jar 
-CMD ["java","-jar","/home/spring-petclinic-1.5.1.jar"]
+FROM openjdk:17
+
+COPY target/hackerrank-java-1.0-SNAPSHOT.jar /app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/app.jar"]
